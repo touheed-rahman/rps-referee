@@ -4,23 +4,17 @@
 
 import random
 
-
 # ADK-style lightweight stubs
-
-
 
 def tool(func):
     """ADK-style tool decorator (stub for local execution)"""
     return func
-
 
 class Agent:
     def __init__(self, name, instructions, tools):
         self.name = name
         self.instructions = instructions
         self.tools = tools
-
-
 
 # Game State (stored outside prompt)
 
@@ -32,10 +26,7 @@ game_state = {
     "bot_bomb_used": False
 }
 
-
 # Tool 1: Validate user move
-
-
 
 @tool
 def validate_move(user_move: str) -> dict:
@@ -51,7 +42,6 @@ def validate_move(user_move: str) -> dict:
         return {"valid": False, "reason": "Bomb already used"}
 
     return {"valid": True}
-
 
 # Tool 2: Resolve round
 
@@ -82,8 +72,6 @@ def resolve_round(user_move: str, bot_move: str) -> dict:
         return {"winner": "user", "message": f"{user_move} beats {bot_move}"}
 
     return {"winner": "bot", "message": f"{bot_move} beats {user_move}"}
-
-
 
 # Tool 3: Update game state
 
@@ -119,8 +107,6 @@ referee_agent = Agent(
     ),
     tools=[validate_move, resolve_round, update_game_state],
 )
-
-
 
 # Simple CLI Game Loop
 
