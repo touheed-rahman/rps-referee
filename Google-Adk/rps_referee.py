@@ -1,16 +1,18 @@
 
 # import google.adk is commented out since ADK is not publicly exposed; using simple local stubs instead.
-#from google.adk import Agent, tool
+# from google.adk import Agent, tool
 
 import random
 
-# -------------------------
+
 # ADK-style lightweight stubs
-# -------------------------
+
+
 
 def tool(func):
     """ADK-style tool decorator (stub for local execution)"""
     return func
+
 
 class Agent:
     def __init__(self, name, instructions, tools):
@@ -19,9 +21,9 @@ class Agent:
         self.tools = tools
 
 
-# -------------------------
+
 # Game State (stored outside prompt)
-# -------------------------
+
 game_state = {
     "round": 1,
     "user_score": 0,
@@ -30,9 +32,11 @@ game_state = {
     "bot_bomb_used": False
 }
 
-# -------------------------
+
 # Tool 1: Validate user move
-# -------------------------
+
+
+
 @tool
 def validate_move(user_move: str) -> dict:
     """
@@ -49,9 +53,8 @@ def validate_move(user_move: str) -> dict:
     return {"valid": True}
 
 
-# -------------------------
 # Tool 2: Resolve round
-# -------------------------
+
 @tool
 def resolve_round(user_move: str, bot_move: str) -> dict:
     """
@@ -81,9 +84,9 @@ def resolve_round(user_move: str, bot_move: str) -> dict:
     return {"winner": "bot", "message": f"{bot_move} beats {user_move}"}
 
 
-# -------------------------
+
 # Tool 3: Update game state
-# -------------------------
+
 @tool
 def update_game_state(user_move: str, bot_move: str, winner: str) -> dict:
     """
@@ -104,9 +107,9 @@ def update_game_state(user_move: str, bot_move: str, winner: str) -> dict:
     return game_state
 
 
-# -------------------------
+
 # Agent Definition
-# -------------------------
+
 referee_agent = Agent(
     name="rps_referee",
     instructions=(
@@ -118,9 +121,9 @@ referee_agent = Agent(
 )
 
 
-# -------------------------
+
 # Simple CLI Game Loop
-# -------------------------
+
 print("Rock–Paper–Scissors–Plus")
 print("Rules:")
 print("- Best of 3 rounds")
